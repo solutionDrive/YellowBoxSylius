@@ -42,4 +42,23 @@ final class YellowBoxContext implements Context
         }
     }
 
+    /**
+     * @When i click on the yellow-box symbol
+     */
+    public function iClickOnTheYellowBoxSymbol()
+    {
+        $this->yellowBoxPage->clickOverlaySymbol();
+    }
+
+    /**
+     * @Then i should see the expanded yellow-box overlay
+     */
+    public function iShouldSeeTheExpandedYellowBoxOverlay()
+    {
+        if (!$this->yellowBoxPage->isOverlayExpanded()) {
+           throw new \Exception('YellowBox overlay is not expanded');
+        }
+    }
+
+
 }

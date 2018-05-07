@@ -13,7 +13,7 @@ class YellowBoxPage extends SymfonyPage
      */
     public function overlayExists(): bool
     {
-        return empty($this->getDocument()->find('css', '#yellow-box'));
+        return !empty($this->getDocument()->find('css', '#yellow-box'));
     }
 
     /**
@@ -22,5 +22,15 @@ class YellowBoxPage extends SymfonyPage
     public function getRouteName(): string
     {
         return 'sylius_shop_homepage';
+    }
+
+    public function clickOverlaySymbol()
+    {
+        $this->getDocument()->find('css', '#yellow-box')->click();
+    }
+
+    public function isOverlayExpanded()
+    {
+        return !empty($this->getDocument()->find('css', '#yellow-box.expanded'));
     }
 }
