@@ -1,0 +1,10 @@
+# Put your Behat suites definitions here
+
+default:
+    suites:
+        yellowbox:
+            contexts_services:
+                - solutiondrive.context.ui.shop.yellowbox
+
+            filters:
+                tags: "@ui && @yellowbox"

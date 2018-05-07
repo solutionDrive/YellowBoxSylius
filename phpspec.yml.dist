@@ -1,0 +1,4 @@
+suites:
+    main:
+        namespace: solutionDrive\YellowBox
+        psr4_prefix: solutionDrive\YellowBox
