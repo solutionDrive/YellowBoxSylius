@@ -26,7 +26,6 @@ final class Configuration implements ConfigurationInterface
             ->variableNode('jira_token_access_url')->end()
             ->variableNode('jira_private_key')->end()
             ->variableNode('jira_private_key_passphrase')->end()
-            ->variableNode('jira_private_passphrase')->end()
             ->variableNode('jira_projekt_key')->end()
             ->variableNode('jira_displayed_issue_status')->end()
             ->variableNode('jira_transition_approve')->end()
