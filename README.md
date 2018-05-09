@@ -1,94 +1,43 @@
-<p align="center">
-    <a href="http://sylius.org" target="_blank">
-        <img src="http://demo.sylius.org/assets/shop/img/logo.png" />
-    </a>
-</p>
-<h1 align="center">Plugin Skeleton</h1>
-<p align="center">
-    <a href="https://packagist.org/packages/sylius/plugin-skeleton" title="License">
-        <img src="https://img.shields.io/packagist/l/sylius/plugin-skeleton.svg" />
-    </a>
-    <a href="https://packagist.org/packages/sylius/plugin-skeleton" title="Version">
-        <img src="https://img.shields.io/packagist/v/sylius/plugin-skeleton.svg" />
-    </a>
-    <a href="http://travis-ci.org/Sylius/PluginSkeleton" title="Build status">
-        <img src="https://img.shields.io/travis/Sylius/PluginSkeleton/master.svg" />
-    </a>
-    <a href="https://scrutinizer-ci.com/g/Sylius/PluginSkeleton/" title="Scrutinizer">
-        <img src="https://img.shields.io/scrutinizer/g/Sylius/PluginSkeleton.svg" />
-    </a>
-</p>
+#Yellow-box
 
 ## Installation
 
-1. Run `composer create-project sylius/plugin-skeleton ProjectName`.
+1. Run `composer require solutiondrive/yellow-box`.
 
-2. From the plugin skeleton root directory, run the following commands:
-
-    ```bash
-    $ (cd tests/Application && yarn install)
-    $ (cd tests/Application && yarn run gulp)
-    $ (cd tests/Application && bin/console assets:install web -e test)
-    
-    $ (cd tests/Application && bin/console doctrine:database:create -e test)
-    $ (cd tests/Application && bin/console doctrine:schema:create -e test)
-    ```
+2. Add following configuration to your `config.yml` and replace the values with yours
+        
+        yellow_box:
+          jira_token: <REST-API-TOKEN> #generated in step 3
+          jira_url: <your jira server>
+          jira_api_url: /rest/api/2/
+          jira_token_request_url: /plugins/servlet/oauth/request-token
+          jira_token_auth_url: /plugins/servlet/oauth/authorize?oauth_token=
+          jira_token_access_url: /plugins/servlet/oauth/access-token
+          jira_private_key: <path to your pcks8 private key>
+          jira_private_key_passphrase: <Your private key passphrase>
+          jira_projekt_key: <The Key of the Projekt the issues are in>
+          jira_displayed_issue_status: <The state of the issues to display>
+          jira_transition_approve: <transition id for approving>
+          jira_transition_decline: <transition id for declining>
+          jira_decline_reason_field: <the field to write the decline reason in>
+3. Go to the shop which this plugin is installed on and open 
+        
+        <your protocoll>://<your-shop>/solutiondrive/yellowbox/generate_token
+        
+    and authenticate with your the jira account that the yellowbox should use. Now there should be the REST-API-Token you can insert into your config. 
 
 ## Usage
 
 ### Running plugin tests
-
-  - PHPUnit
-
-    ```bash
-    $ bin/phpunit
-    ```
-
-  - PHPSpec
-
-    ```bash
-    $ bin/phpspec run
-    ```
 
   - Behat (non-JS scenarios)
 
     ```bash
     $ bin/behat --tags="~@javascript"
     ```
-
-  - Behat (JS scenarios)
- 
-    1. Download [Chromedriver](https://sites.google.com/a/chromium.org/chromedriver/)
     
-    2. Run Selenium server with previously downloaded Chromedriver:
-    
-        ```bash
-        $ bin/selenium-server-standalone -Dwebdriver.chrome.driver=chromedriver
-        ```
-    3. Run test application's webserver on `localhost:8080`:
-    
-        ```bash
-        $ (cd tests/Application && bin/console server:run 127.0.0.1:8080 -d web -e test)
-        ```
-    
-    4. Run Behat:
-    
-        ```bash
-        $ bin/behat --tags="@javascript"
-        ```
-
-### Opening Sylius with your plugin
-
-- Using `test` environment:
+  - Behat (with-JS scenarios)
 
     ```bash
-    $ (cd tests/Application && bin/console sylius:fixtures:load -e test)
-    $ (cd tests/Application && bin/console server:run -d web -e test)
-    ```
-    
-- Using `dev` environment:
-
-    ```bash
-    $ (cd tests/Application && bin/console sylius:fixtures:load -e dev)
-    $ (cd tests/Application && bin/console server:run -d web -e dev)
+    $ bin/behat
     ```

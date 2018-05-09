@@ -25,24 +25,11 @@ class JiraTokenController extends Controller
 
         if ($sRequestToken !== null) {
             $sToken = $oTokenGenerator->getAccessToken($sRequestToken);
-            //dump($this->checkToken($sToken));
-            die($sToken);
-            return $this->redirectToRoute('sylius_shop_homepage');
+            return $this->render('YellowBoxPlugin::token-generated-success.html.twig', ['token' => $sToken]);
         }
 
         $sAbsoluteUrl = $this->generateUrl('yellowbox_generate_token', [], UrlGeneratorInterface::ABSOLUTE_URL);
         $sTokenUrl = $oTokenGenerator->getRequestToken($sAbsoluteUrl);
         return $this->redirect($sTokenUrl);
-    }
-
-    public function checkTokenAction()
-    {
-        $oClient = $this->get('JiraService');
-        $oResponse = $oClient->getUser();
-        return $oResponse->getStatusCode();
-        if ($oResponse->getStatusCode() === 200) {
-            return true;
-        }
-        return false;
     }
 }

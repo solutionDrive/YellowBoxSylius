@@ -1,0 +1,29 @@
+{% extends "@SyliusShop/layout.html.twig" %}
+
+{% block content %}
+    <div class="ui positive message grid">
+        <div class="two wide column">
+            <i class="huge check icon"></i>
+        </div>
+        <div class="eight wide column">
+            <div class="header">
+                REST-API-Token successfully generated!
+            </div>
+            <p>Here is your Token:</p>
+            <div class="ui action input">
+                <input type="text" id="token" value="{{ token }}">
+                <button id="copy" data-clipboard-target="#token" class="ui icon button">
+                    <i class="copy icon"></i>
+                    Copy
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/yellowboxplugin/js/lib/clipboard.min.js') }}"></script>
+    <script>
+        new ClipboardJS('#copy');
+    </script>
+{% endblock %}
