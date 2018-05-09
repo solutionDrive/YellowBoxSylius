@@ -1,0 +1,45 @@
+<div id="yellow-box" class="ui raised segment">
+    <div class="ui dimmer">
+        <div class="ui loader"></div>
+    </div>
+    <div class="ui negative message hidden">
+        <i class="close icon"></i>
+        <div class="header">
+            Es ist ein Fehler beim Anfragen des Servers aufgetreten.
+        </div>
+        <p>HTTP Error <span class="error"></span>
+        </p></div>
+    <i class="big expand icon"></i>
+    <div id="storys" class="hidden">
+    </div>
+</div>
+
+<div class="ui modal basic accept">
+    <div class="ui dimmer">
+        <div class="ui loader"></div>
+    </div>
+    <div class="header">Wollen Sie die Story(<span class="story"></span>) wirklich als vollständig markieren?</div>
+    <div class="actions">
+        <div class="ui approve inverted green button">Ja</div>
+        <div class="ui cancel inverted red button">Nein</div>
+    </div>
+</div>
+
+<div class="ui modal basic decline">
+    <div class="ui dimmer">
+        <div class="ui loader"></div>
+    </div>
+    <div class="header">Wollen Sie die Story(<span class="story"></span>) wirklich als unvollständig markieren?</div>
+    <div class="content">
+        <div class="ui form">
+            <div class="field">
+                <label>Bitte gebe den Grund des Ablehnens an:</label>
+                <textarea id="decline_reason"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui approve inverted green button">Ja</div>
+        <div class="ui cancel inverted red button">Nein</div>
+    </div>
+</div>
