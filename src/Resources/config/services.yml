@@ -20,10 +20,10 @@ services:
             - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.javascripts, method: onBlockEvent }
     JiraServiceCore:
         class:  solutionDrive\YellowBox\API\JiraConnector
-        arguments: ["%jira_token%", '%jira_private_passphrase%', "%jira_url%", "%jira_api_url%", "%jira_private_key%"]
+        arguments: ["%jira_token%", '%jira_private_key_passphrase%', "%jira_url%", "%jira_api_url%", "%jira_private_key%"]
     JiraService:
         class:  solutionDrive\YellowBox\API\JiraConnectorWrapper
         arguments: ["@JiraServiceCore"]
     TokenGeneratorService:
         class:  solutionDrive\YellowBox\API\JiraTokenGenerator
-        arguments: ["%jira_private_passphrase%", "%jira_url%","%jira_token_request_url%","%jira_token_access_url%", "%jira_private_key%", "%jira_token_auth_url%"]
+        arguments: ["%jira_private_key_passphrase%", "%jira_url%","%jira_token_request_url%","%jira_token_access_url%", "%jira_private_key%", "%jira_token_auth_url%"]

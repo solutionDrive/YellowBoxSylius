@@ -73,7 +73,7 @@ yellow_box:
   jira_token_auth_url: /plugins/servlet/oauth/authorize?oauth_token=
   jira_token_access_url: /plugins/servlet/oauth/access-token
   jira_private_key: "%kernel.root_dir%/../../../src/Resources/config/keys/jira_privatekey.pcks8"
-  jira_private_passphrase: ~
+  jira_private_key_passphrase: ~
   jira_projekt_key: YELLOWBOX
   jira_displayed_issue_status: In Progress
   jira_transition_approve: 31
