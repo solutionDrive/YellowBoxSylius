@@ -1,0 +1,29 @@
+services:
+    solutiondrive.yellobox.sontata.event.content:
+        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        arguments:
+            - '@@YellowBoxPlugin/yellow-box.html.twig'
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.after_body, method: onBlockEvent }
+
+    solutiondrive.yellobox.sontata.event.stylesheets:
+        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        arguments:
+            - '@@YellowBoxPlugin/stylesheets.html.twig'
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.stylesheets, method: onBlockEvent }
+    solutiondrive.yellobox.sontata.event.javascript:
+        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        arguments:
+            - '@@YellowBoxPlugin/javascript.html.twig'
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.javascripts, method: onBlockEvent }
+    JiraServiceCore:
+        class:  solutionDrive\YellowBox\API\JiraConnector
+        arguments: ["%jira_token%", '%jira_private_passphrase%', "%jira_url%", "%jira_api_url%", "%jira_private_key%"]
+    JiraService:
+        class:  solutionDrive\YellowBox\API\JiraConnectorWrapper
+        arguments: ["@JiraServiceCore"]
+    TokenGeneratorService:
+        class:  solutionDrive\YellowBox\API\JiraTokenGenerator
+        arguments: ["%jira_private_passphrase%", "%jira_url%","%jira_token_request_url%","%jira_token_access_url%", "%jira_private_key%", "%jira_token_auth_url%"]
