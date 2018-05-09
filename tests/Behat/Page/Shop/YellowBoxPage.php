@@ -8,6 +8,20 @@ use Sylius\Behat\Page\SymfonyPage;
 
 class YellowBoxPage extends SymfonyPage
 {
+
+    public function open(array $urlParameters = [])
+    {
+        parent::open($urlParameters);
+        $this->getDocument()->waitFor(400, function () {
+            if (empty($this->getDocument()->find('css', '#yellow-box .ui.dimmer.active'))) {
+                return true;
+            }
+            return false;
+        });
+
+        sleep(2);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -27,6 +41,7 @@ class YellowBoxPage extends SymfonyPage
     public function clickOverlaySymbol()
     {
         $this->getDocument()->find('css', '#yellow-box')->click();
+        sleep(2);
     }
 
     public function isOverlayExpanded()
@@ -36,51 +51,74 @@ class YellowBoxPage extends SymfonyPage
 
     public function clickCloseButton()
     {
-        $this->getDocument()->find('css', '#yellow-box #close');
+        $this->getDocument()->find('css', '#yellow-box')->click();
+        sleep(1);
     }
 
     public function getStorys()
     {
-        return $this->getDocument()->find('css', '#yellow-box .story');
+        return $this->getDocument()->findAll('css', '#yellow-box .story');
     }
 
     public function clickApprove()
     {
-        $this->getDocument()->find('css', '#yellow-box #approve')->click();
+        $this->getDocument()->find('css', '#yellow-box .button.accept')->click();
+        sleep(1);
     }
 
     public function clickDecline()
     {
-        $this->getDocument()->find('css', '#yellow-box #decline')->click();
+        $this->getDocument()->find('css', '#yellow-box .button.decline')->click();
+        sleep(1);
     }
 
     public function warningMessageVisible()
     {
-        $this->getDocument()->find('css', '#yellow-box .modal')->isVisible();
+        if (
+            $this->getDocument()->find('css', '.modal.decline')->isVisible() ||
+            $this->getDocument()->find('css', '.modal.accept')->isVisible()
+        ) {
+            return true;
+        }
+        return false;
     }
 
     public function feedbackFieldIsVisible()
     {
-        $this->getDocument()->find('css', '#yellow-box .modal input')->isVisible();
+        return $this->getDocument()->find('css', '.modal.decline textarea')->isVisible();
     }
 
     public function clickOnSubmit()
     {
-        $this->getDocument()->find('css','#yellow-box #submit')->click();
+        $acceptModal = $this->getDocument()->find('css','.modal.accept');
+        if ($acceptModal->isVisible()) {
+            $acceptModal->find('css','.button.approve')->click();
+        } else {
+            $declineModal = $this->getDocument()->find('css','.modal.decline');
+            $declineModal->find('css','.button.approve')->click();
+        }
+        sleep(1);
     }
 
     public function clickOnCancel()
     {
-        $this->getDocument()->find('css','#yellow-box #cancel')->click();
+        $acceptModal = $this->getDocument()->find('css','.modal.accept');
+        if ($acceptModal->isVisible()) {
+            $acceptModal->find('css', '.button.cancel')->click();
+        } else {
+            $declineModal = $this->getDocument()->find('css','.modal.decline');
+            $declineModal->find('css','.button.cancel')->click();
+        }
+        sleep(1);
     }
 
     public function fillInReasonField()
     {
-        $this->getDocument()->fillField('#yellow-box input', 'Test Reason 123');
+        $this->getDocument()->fillField('decline_reason', 'Test Reason 123');
     }
 
-    public function successMessageVisible()
+    public function clearYellowBoxCookie()
     {
-        $this->getDocument()->find('css', '#success.ui.popup')->isVisible();
+        $this->getDriver()->setCookie('yellowbox-state', 'false');
     }
 }

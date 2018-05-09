@@ -6,77 +6,70 @@ Feature: Managing Features with the YellowBox
 
   Background:
     Given the store operates on a single channel in "EUR" currency
+    And I am on the yellow-box page
+    And there is no yellowbox cookie
 
   @ui
-  Scenario: Visit the shop-page
-    When I am on the yellow-box page
+  Scenario: I Visit the shop-page
     Then I should see the yellow-box overlay
 
   @ui @javascript
-  Scenario: open and close the overlay
-    When I am on the yellow-box page
+  Scenario: I open and close the overlay
     Then I should see the yellow-box overlay
-    And i click on the yellow-box symbol
-    Then i should see the expanded yellow-box overlay
-    And i click on the close button
-    Then i should not see the expanded yellow-box overlay
+    And I click on the yellow-box symbol
+    Then I should see the expanded yellow-box overlay
+    And I click on the close button
+    Then I should not see the expanded yellow-box overlay
 
   @ui @javascript
-  Scenario: i see storys
-    When I am on the yellow-box page
+  Scenario: I see storys
     Then I should see the yellow-box overlay
-    And i click on the yellow-box symbol
-    Then i should see storys
+    And I click on the yellow-box symbol
+    Then I should see storys
 
   @ui @javascript
-  Scenario: i approve and get a warning
-    When I am on the yellow-box page
+  Scenario: I approve and get a warning
     Then I should see the yellow-box overlay
-    And i click on the yellow-box symbol
-    When i click on approve
-    Then i should see an warning message
+    And I click on the yellow-box symbol
+    When I click on approve
+    Then I should see an warning message
 
   @ui @javascript
-  Scenario: i decline and get a warning
-    When I am on the yellow-box page
+  Scenario: I decline and get a warning
     Then I should see the yellow-box overlay
-    And i click on the yellow-box symbol
-    When i click on approve
-    Then i should see an warning message and an input field
+    And I click on the yellow-box symbol
+    When I click on decline
+    Then I should see an warning message and an input field
 
   @ui @javascript
-  Scenario: i approve and submit
-    When I am on the yellow-box page
+  Scenario: I approve and submit
     Then I should see the yellow-box overlay
-    And i click on the yellow-box symbol
-    When i click on approve
-    And i click on submit
-    Then i should see a success message
+    And I click on the yellow-box symbol
+    When I click on approve
+    And I click on submit
+    Then I should not see an warning message
 
   @ui @javascript
-  Scenario: i decline and submit
-    When I am on the yellow-box page
+  Scenario: I decline and submit
     Then I should see the yellow-box overlay
-    And i click on the yellow-box symbol
-    When i click on approve
-    And i fill in the reason field
-    And i click on submit
-    Then i should see a success message
+    And I click on the yellow-box symbol
+    When I click on decline
+    And I fill in the reason field
+    And I click on submit
+    Then I should not see an warning message
 
   @ui @javascript
-  Scenario: i approve and cancel
-    When I am on the yellow-box page
+  Scenario: I approve and cancel
     Then I should see the yellow-box overlay
-    And i click on the yellow-box symbol
-    When i click on approve
-    Then i should see an warning message
-    Then i cancel the change
+    And I click on the yellow-box symbol
+    When I click on approve
+    Then I should see an warning message
+    Then I cancel the change
 
   @ui @javascript
-  Scenario: i decline and cancel
-    When I am on the yellow-box page
+  Scenario: I decline and cancel
     Then I should see the yellow-box overlay
-    And i click on the yellow-box symbol
-    When i click on decline
-    Then i should see an warning message
-    Then i cancel the change
+    And I click on the yellow-box symbol
+    When I click on decline
+    Then I should see an warning message
+    Then I cancel the change

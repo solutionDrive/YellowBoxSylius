@@ -26,7 +26,15 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @when I am on the yellow-box page
+     * @When there is no yellowbox cookie
+     */
+    public function thereIsNoYellowboxNoCookie()
+    {
+        $this->yellowBoxPage->clearYellowBoxCookie();
+    }
+
+    /**
+     * @When I am on the yellow-box page
      */
     public function iAmOnTheYellowBoxPage()
     {
@@ -34,7 +42,7 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @then I should see the yellow-box overlay
+     * @Then I should see the yellow-box overlay
      */
     public function iShouldSeeTheYellowBoxOverlay()
     {
@@ -44,7 +52,7 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @When i click on the yellow-box symbol
+     * @When I click on the yellow-box symbol
      */
     public function iClickOnTheYellowBoxSymbol()
     {
@@ -52,7 +60,7 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @Then i should see the expanded yellow-box overlay
+     * @Then I should see the expanded yellow-box overlay
      */
     public function iShouldSeeTheExpandedYellowBoxOverlay()
     {
@@ -62,7 +70,7 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @Then i click on the close button
+     * @Then I click on the close button
      */
     public function iClickOnTheCloseButton()
     {
@@ -70,7 +78,7 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @Then i should not see the expanded yellow-box overlay
+     * @Then I should not see the expanded yellow-box overlay
      */
     public function iShouldNotSeeTheExpandedYellowBoxOverlay()
     {
@@ -80,17 +88,17 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @Then i should see storys
+     * @Then I should see storys
      */
     public function iShouldSeeStorys()
     {
-        if (!empty($this->yellowBoxPage->getStorys())) {
+        if (empty($this->yellowBoxPage->getStorys())) {
             throw new \Exception('No storys in YellowBox');
         }
     }
 
     /**
-     * @When i click on approve
+     * @When I click on approve
      */
     public function iClickOnApprove()
     {
@@ -98,7 +106,7 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @Then i should see an warning message
+     * @Then I should see an warning message
      */
     public function iShouldSeeAnWarningMessage()
     {
@@ -108,7 +116,17 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @Then i should see an warning message and an input field
+     * @Then I should not see an warning message
+     */
+    public function iShouldNotSeeAnWarningMessage()
+    {
+        if ($this->yellowBoxPage->warningMessageVisible()) {
+            throw new \Exception("Warning Message is visible");
+        }
+    }
+
+    /**
+     * @Then I should see an warning message and an input field
      */
     public function iShouldSeeAnWarningMessageAndAnInputField()
     {
@@ -122,7 +140,7 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @When i click on submit
+     * @When I click on submit
      */
     public function iClickOnSubmit()
     {
@@ -130,15 +148,7 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @Then i should see a success message
-     */
-    public function iShouldSeeASuccessMessage()
-    {
-        $this->yellowBoxPage->successMessageVisible();
-    }
-
-    /**
-     * @When i fill in the reason field
+     * @When I fill in the reason field
      */
     public function iFillInTheReasonField()
     {
@@ -146,7 +156,7 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @Then i cancel the change
+     * @Then I cancel the change
      */
     public function iCancelTheChange()
     {
@@ -154,7 +164,7 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @When i click on decline
+     * @When I click on decline
      */
     public function iClickOnDecline()
     {
