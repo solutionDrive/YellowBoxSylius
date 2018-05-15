@@ -1,14 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
-/**
- * Created by PhpStorm.
- * User: jnoack
- * Date: 20.01.17
- * Time: 16:31
+/*
+ * Created by solutionDrive GmbH
+ *
+ * @copyright 2018 solutionDrive GmbH
  */
-namespace solutionDrive\YellowBox\API\Actions;
 
-use Symfony\Component\VarDumper\VarDumper;
+namespace solutionDrive\YellowBox\API\Actions;
 
 abstract class AbstractAction implements ActionInterface
 {
@@ -17,25 +15,36 @@ abstract class AbstractAction implements ActionInterface
     const METHOD_PUT = 'PUT';
     const METHOD_DELETE = 'DELETE';
 
+    /** @var string */
     protected $sRequestType = '';
+
+    /** @var string */
     protected $sRequestUrl = '';
+
+    /** @var string[] */
     protected $aArguments = [];
 
-    public function getArguments() : array
+    /**
+     * @return string[]
+     */
+    public function getArguments(): array
     {
         return $this->aArguments;
     }
 
-    public function getRequestUrl() : string
+    public function getRequestUrl(): string
     {
         return $this->sRequestUrl;
     }
 
-    public function getRequestType() : string
+    public function getRequestType(): string
     {
         return $this->sRequestType;
     }
 
+    /**
+     * @param string[] $aArguments
+     */
     public function __construct(array $aArguments)
     {
         if (isset($aArguments['require'])) {

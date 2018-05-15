@@ -1,27 +1,40 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: vladi
- * Date: 08.02.17
- * Time: 12:47
+<?php declare(strict_types=1);
+
+/*
+ * Created by solutionDrive GmbH
+ *
+ * @copyright 2018 solutionDrive GmbH
  */
 
 namespace solutionDrive\YellowBox\API\Actions;
 
 class SetTicketFields extends AbstractAction
 {
+    /** @var string */
     protected $sRequestType = self::METHOD_PUT;
-    protected $sRequestUrl = "issue/";
+
+    /** @var string */
+    protected $sRequestUrl = 'issue/';
+
+    /** @var ?string */
     protected $sTicket = null;
+
+    /** @var string[] */
     protected $aTicketInformation = [];
 
+    /**
+     * @param string[] $aTicketInformation
+     */
     public function __construct(array $aTicketInformation)
     {
-        $this->sTicket = $aTicketInformation["ticketKey"];
+        $this->sTicket = $aTicketInformation['ticketKey'];
         unset($aTicketInformation['ticketKey']);
         $this->aTicketInformation = $aTicketInformation;
     }
 
+    /**
+     * @return string[]
+     */
     public function getArguments(): array
     {
         $aInfo = $this->aTicketInformation;
@@ -32,10 +45,9 @@ class SetTicketFields extends AbstractAction
         }
 
         return [
-            "json" => ["fields" => $oObject]
+            'json' => ['fields' => $oObject],
         ];
     }
-
 
     public function getRequestUrl(): string
     {

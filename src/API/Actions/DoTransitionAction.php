@@ -1,11 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
-/**
- * Created by PhpStorm.
- * User: jnoack
- * Date: 20.01.17
- * Time: 16:32
+/*
+ * Created by solutionDrive GmbH
+ *
+ * @copyright 2018 solutionDrive GmbH
  */
+
 namespace solutionDrive\YellowBox\API\Actions;
 
 class DoTransitionAction extends AbstractAction
@@ -13,16 +13,24 @@ class DoTransitionAction extends AbstractAction
     const TEST_FAILED = 111;
     const TEST_SUCCESS = 121;
 
+    /** @var string */
     protected $sRequestType = self::METHOD_POST;
+
+    /** @var string */
     protected $sRequestUrl = 'issue/';
+
+    /** @var string[] */
     protected $aArguments = [
-        "json" => [
+        'json' => [
             'transition' => [
-                'id' => 0
-            ]
-        ]
+                'id' => 0,
+            ],
+        ],
     ];
 
+    /**
+     * @param string[] $sParameter
+     */
     public function __construct(array $sParameter)
     {
         $this->sRequestUrl .= $sParameter['ticketKey'] . '/transitions';

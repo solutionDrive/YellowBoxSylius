@@ -1,21 +1,21 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: jnoack
- * Date: 08.05.18
- * Time: 11:09
+<?php declare(strict_types=1);
+
+/*
+ * Created by solutionDrive GmbH
+ *
+ * @copyright 2018 solutionDrive GmbH
  */
 
 namespace solutionDrive\YellowBox\Controller;
 
-
+use \Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use GuzzleHttp\Psr7\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class YellowBoxController extends Controller
 {
-    public function approveAction(Request $request)
+    public function approveAction(Request $request): SymfonyResponse
     {
         $story = $request->request->get('story');
         $jira = $this->get('JiraService');
@@ -24,14 +24,15 @@ class YellowBoxController extends Controller
         $response = $jira->doTransition(
             [
                 'ticketKey'  => $story,
-                'transition' => $approveTransition
-            ]);
+                'transition' => $approveTransition,
+            ]
+        );
 
         $success = $this->requestSuccessfull($response);
         return $this->json(['success' => $success]);
     }
 
-    public function declineAction(Request $request)
+    public function declineAction(Request $request): SymfonyResponse
     {
         $story  = $request->request->get('story');
         $jira   = $this->get('JiraService');
@@ -57,7 +58,7 @@ class YellowBoxController extends Controller
         return $this->json(['success' => $success]);
     }
 
-    public function getStorysAction()
+    public function getStorysAction(): SymfonyResponse
     {
         $jira = $this->get('JiraService');
         $projekt = $this->getParameter('jira_projekt_key');
@@ -70,7 +71,7 @@ class YellowBoxController extends Controller
         return $this->json($json['issues']);
     }
 
-    private function requestSuccessfull(Response $response)
+    private function requestSuccessfull(Response $response): bool
     {
         $statusCode = $response->getStatusCode();
         if ($statusCode < 300 && $statusCode > 100) {

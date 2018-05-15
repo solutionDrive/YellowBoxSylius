@@ -1,30 +1,48 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: jnoack
- * Date: 17.02.17
- * Time: 09:26
+<?php declare(strict_types=1);
+
+/*
+ * Created by solutionDrive GmbH
+ *
+ * @copyright 2018 solutionDrive GmbH
  */
 
 namespace solutionDrive\YellowBox\API;
 
-use GuzzleHttp\Exception\ServerException;
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
 
 class JiraTokenGenerator
 {
-    protected $sJiraUrl;
-    protected $sJira_token_request_url;
-    protected $sJira_token_access_url;
-    protected $sJira_private_key;
-    protected $sTokenAuthUrl;
-    protected $aToken;
-    protected $sPrivateKeyPassPhrase;
+    /** @var string */
+    protected $sJiraUrl = '';
 
-    public function __construct($sPrivateKeyPassPhrase, $sJiraUrl, $sJiraRequestUrl, $sJiraAccessUrl, $sJiraPrivateKey, $sTokenAuthUrl)
-    {
+    /** @var string */
+    protected $sJira_token_request_url = '';
+
+    /** @var string */
+    protected $sJira_token_access_url = '';
+
+    /** @var string */
+    protected $sJira_private_key = '';
+
+    /** @var string */
+    protected $sTokenAuthUrl = '';
+
+    /** @var string */
+    protected $aToken = '';
+
+    /** @var string */
+    protected $sPrivateKeyPassPhrase = '';
+
+    public function __construct(
+        string $sPrivateKeyPassPhrase,
+        string $sJiraUrl,
+        string $sJiraRequestUrl,
+        string $sJiraAccessUrl,
+        string $sJiraPrivateKey,
+        string $sTokenAuthUrl
+    ) {
         $this->sJiraUrl = $sJiraUrl;
         $this->sJira_token_request_url = $sJiraRequestUrl;
         $this->sJira_token_access_url = $sJiraAccessUrl;
@@ -33,8 +51,7 @@ class JiraTokenGenerator
         $this->sPrivateKeyPassPhrase = $sPrivateKeyPassPhrase;
     }
 
-
-    public function getAccessToken($sToken, $sTokenSecret = '')
+    public function getAccessToken(string $sToken, string $sTokenSecret = ''): string
     {
         $sAccessTokenUrl = $this->sJiraUrl . $this->sJira_token_access_url;
 
@@ -53,7 +70,7 @@ class JiraTokenGenerator
         return $aToken['token'];
     }
 
-    public function getRequestToken($sRedirectUrl)
+    public function getRequestToken(string $sRedirectUrl): string
     {
         $sRequestTokenUrl = $this->sJiraUrl . $this->sJira_token_request_url;
 
@@ -72,7 +89,7 @@ class JiraTokenGenerator
         return $this->sJiraUrl . $this->sTokenAuthUrl . $aToken['token'] . '&oauth_callback=' . $sRedirectUrl;
     }
 
-    protected function generateClient($sToken = '', $sTokenSecret = '')
+    protected function generateClient(string $sToken = '', string $sTokenSecret = ''): Client
     {
         $stack = HandlerStack::create();
 

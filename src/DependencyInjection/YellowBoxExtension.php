@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+/*
+ * Created by solutionDrive GmbH
+ *
+ * @copyright 2018 solutionDrive GmbH
+ */
+
 namespace solutionDrive\YellowBox\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
@@ -24,6 +30,5 @@ final class YellowBoxExtension extends Extension
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
-
     }
 }

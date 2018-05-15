@@ -1,35 +1,48 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: jnoack
- * Date: 06.02.17
- * Time: 15:40
+<?php declare(strict_types=1);
+
+/*
+ * Created by solutionDrive GmbH
+ *
+ * @copyright 2018 solutionDrive GmbH
  */
 
 namespace solutionDrive\YellowBox\API;
 
-use solutionDrive\YellowBox\API\Actions\ActionInterface;
 use GuzzleHttp\Client;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
+use solutionDrive\YellowBox\API\Actions\ActionInterface;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 class JiraConnector
 {
+    /** @var ?string */
     protected $sToken = null;
+
+    /** @var ?string */
     protected $sApiUrl = null;
+
+    /** @var ?string */
     protected $sPrivateKeyPath = null;
+
+    /** @var ?string */
     protected $sPrivateKeyPassPhrase = null;
 
-    public function __construct($sToken, $sPrivateKeyPassPhrase, $sJiraUrl, $sJiraApiUrl, $sJiraPrivateKey)
-    {
+    public function __construct(
+        string $sToken,
+        string $sPrivateKeyPassPhrase,
+        string $sJiraUrl,
+        string $sJiraApiUrl,
+        string $sJiraPrivateKey
+    ) {
         $this->sToken                = $sToken;
         $this->sPrivateKeyPath       = $sJiraPrivateKey;
         $this->sApiUrl               = $sJiraUrl . $sJiraApiUrl;
         $this->sPrivateKeyPassPhrase = $sPrivateKeyPassPhrase;
     }
 
-    public function requestApi(ActionInterface $oAction)
+    public function requestApi(ActionInterface $oAction): Response
     {
         $oClient    = $this->generateClient();
         $sReqestUrl = $this->sApiUrl . $oAction->getRequestUrl();
@@ -38,7 +51,7 @@ class JiraConnector
         return $oRequest;
     }
 
-    protected function generateClient()
+    protected function generateClient(): Client
     {
         if ($sToken = $this->sToken) {
             $oStack = HandlerStack::create();

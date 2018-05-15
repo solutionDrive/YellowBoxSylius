@@ -1,9 +1,9 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: jnoack
- * Date: 08.05.18
- * Time: 11:55
+<?php declare(strict_types=1);
+
+/*
+ * Created by solutionDrive GmbH
+ *
+ * @copyright 2018 solutionDrive GmbH
  */
 
 namespace solutionDrive\YellowBox\Controller;
@@ -11,19 +11,18 @@ namespace solutionDrive\YellowBox\Controller;
 use solutionDrive\YellowBox\API\JiraTokenGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\HttpFoundation\Cookie;
 
 class JiraTokenController extends Controller
 {
-    private $aToken = null;
-    public function generateTokenAction(Request $request)
+    public function generateTokenAction(Request $request): Response
     {
         /** @var JiraTokenGenerator $oTokenGenerator */
         $oTokenGenerator = $this->get('tokengeneratorservice');
         $sRequestToken = $request->get('oauth_token');
 
-        if ($sRequestToken !== null) {
+        if (null !== $sRequestToken) {
             $sToken = $oTokenGenerator->getAccessToken($sRequestToken);
             return $this->render('YellowBoxPlugin::token-generated-success.html.twig', ['token' => $sToken]);
         }

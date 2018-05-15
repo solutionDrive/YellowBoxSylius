@@ -1,18 +1,24 @@
-<?php
+<?php declare(strict_types=1);
 
-/**
- * Created by PhpStorm.
- * User: jnoack
- * Date: 20.01.17
- * Time: 16:32
+/*
+ * Created by solutionDrive GmbH
+ *
+ * @copyright 2018 solutionDrive GmbH
  */
+
 namespace solutionDrive\YellowBox\API\Actions;
 
 class GetTicketInfoAction extends AbstractAction
 {
+    /** @var string */
     protected $sRequestType = self::METHOD_GET;
+
+    /** @var string */
     protected $sRequestUrl = 'issue/%s';
 
+    /**
+     * @param string[] $aParameter
+     */
     public function __construct(array $aParameter)
     {
         $this->sRequestUrl = sprintf($this->sRequestUrl, $aParameter['ticketKey']);
