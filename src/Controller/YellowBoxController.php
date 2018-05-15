@@ -36,28 +36,29 @@ class YellowBoxController extends Controller
 
     public function declineAction(Request $request)
     {
-        $story = $request->request->get('story');
+        $story  = $request->request->get('story');
+        $jira   = $this->get('JiraService');
         $declineReason = $request->request->get('decline_reason');
-        $jira = $this->get('JiraService');
-        $declineTransition = $this->getParameter('jira_transition_decline');
+        $declineTransition  = $this->getParameter('jira_transition_decline');
         $declineReasonField = $this->getParameter('jira_decline_reason_field');
 
         $jira->setTicketFields(
             [
                 'ticketKey' => $story,
-                $declineReasonField => $declineReason
+                $declineReasonField => $declineReason,
             ]
         );
 
         $response = $jira->doTransition(
             [
                 'ticketKey'  => $story,
-                'transition' => $declineTransition
-            ]);
+                'transition' => $declineTransition,
+            ]
+        );
 
         $success = false;
-        $statuscode = $response->getStatusCode();
-        if ($statuscode !== 404 && $statuscode !== 500 && $statuscode !== 401) {
+        $statusCode = $response->getStatusCode();
+        if ($statusCode !== 404 && $statusCode !== 500 && $statusCode !== 401) {
             $success = true;
         }
         return $this->json(['success' => $success]);

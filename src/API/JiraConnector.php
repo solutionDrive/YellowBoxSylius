@@ -10,44 +10,40 @@ namespace solutionDrive\YellowBox\API;
 
 use solutionDrive\YellowBox\API\Actions\ActionInterface;
 use GuzzleHttp\Client;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
 
-class JiraConnector extends Bundle
+class JiraConnector
 {
-    protected $sEnv = null;
-    protected $sOAuthToken = null;
-    protected $sOAuthTokenSecret = null;
-    protected $token = null;
+    protected $sToken = null;
     protected $sApiUrl = null;
     protected $sPrivateKeyPath = null;
     protected $sPrivateKeyPassPhrase = null;
 
-    public function __construct($token, $sPrivateKeyPassPhrase, $sJiraUrl, $sJiraApiUrl, $sJiraPrivateKey)
+    public function __construct($sToken, $sPrivateKeyPassPhrase, $sJiraUrl, $sJiraApiUrl, $sJiraPrivateKey)
     {
-        $this->token = $token;
-        $this->sPrivateKeyPath = $sJiraPrivateKey;
-        $this->sApiUrl = $sJiraUrl . $sJiraApiUrl;
+        $this->sToken                = $sToken;
+        $this->sPrivateKeyPath       = $sJiraPrivateKey;
+        $this->sApiUrl               = $sJiraUrl . $sJiraApiUrl;
         $this->sPrivateKeyPassPhrase = $sPrivateKeyPassPhrase;
     }
 
     public function requestApi(ActionInterface $oAction)
     {
-        $oClient = $this->generateClient();
+        $oClient    = $this->generateClient();
         $sReqestUrl = $this->sApiUrl . $oAction->getRequestUrl();
         $aArguments = $oAction->getArguments();
-        $oRequest = $oClient->request($oAction->getRequestType(), $sReqestUrl, $aArguments);
+        $oRequest   = $oClient->request($oAction->getRequestType(), $sReqestUrl, $aArguments);
         return $oRequest;
     }
 
     protected function generateClient()
     {
-        if ($sToken = $this->token) {
-            $stack = HandlerStack::create();
+        if ($sToken = $this->sToken) {
+            $oStack = HandlerStack::create();
 
-            $middleware = new Oauth1([
+            $oMiddleware = new Oauth1([
                 'consumer_key'           => 'yellowbox',
                 'consumer_secret'        => 'yellow-box-secret',
                 'token'                  => $sToken,
@@ -57,16 +53,16 @@ class JiraConnector extends Bundle
                 'signature_method'       => Oauth1::SIGNATURE_METHOD_RSA,
             ]);
 
-            $stack->push($middleware);
+            $oStack->push($oMiddleware);
 
-            $client = new Client([
-                'handler' => $stack,
+            $oClient = new Client([
+                'handler' => $oStack,
                 'auth' => 'oauth',
             ]);
 
-            return $client;
+            return $oClient;
         } else {
-            throw new CustomUserMessageAuthenticationException('No No Token');
+            throw new CustomUserMessageAuthenticationException('No Token for Jira API Call');
         }
     }
 }
