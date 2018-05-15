@@ -34,15 +34,16 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @When I am on the yellow-box page
+     * @When I am on the homepage
      */
-    public function iAmOnTheYellowBoxPage()
+    public function iAmOnTheHomepage()
     {
         $this->yellowBoxPage->open();
     }
 
     /**
      * @Then I should see the yellow-box overlay
+     * @Given I see the yellow-box overlay
      */
     public function iShouldSeeTheYellowBoxOverlay()
     {
@@ -157,6 +158,7 @@ final class YellowBoxContext implements Context
 
     /**
      * @Then I cancel the change
+     * @Then I should be able to cancel the change
      */
     public function iCancelTheChange()
     {

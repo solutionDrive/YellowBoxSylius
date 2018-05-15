@@ -5,7 +5,6 @@ default:
         yellowbox:
             contexts_services:
                 - sylius.behat.context.hook.doctrine_orm
-
                 - sylius.behat.context.setup.channel
                 - solutiondrive.context.ui.shop.yellowbox
 
