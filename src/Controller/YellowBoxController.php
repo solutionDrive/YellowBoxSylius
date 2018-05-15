@@ -12,7 +12,6 @@ namespace solutionDrive\YellowBox\Controller;
 use GuzzleHttp\Psr7\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\VarDumper\VarDumper;
 
 class YellowBoxController extends Controller
 {
