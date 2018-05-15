@@ -9,6 +9,7 @@
 namespace solutionDrive\YellowBox\Controller;
 
 
+use GuzzleHttp\Psr7\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\VarDumper\VarDumper;
@@ -27,10 +28,7 @@ class YellowBoxController extends Controller
                 'transition' => $approveTransition
             ]);
 
-        $success = false;
-        if ($response->getStatusCode() === 200) {
-            $success = true;
-        }
+        $success = $this->requestSuccessfull($response);
         return $this->json(['success' => $success]);
     }
 
@@ -56,11 +54,7 @@ class YellowBoxController extends Controller
             ]
         );
 
-        $success = false;
-        $statusCode = $response->getStatusCode();
-        if ($statusCode !== 404 && $statusCode !== 500 && $statusCode !== 401) {
-            $success = true;
-        }
+        $success = $this->requestSuccessfull($response);
         return $this->json(['success' => $success]);
     }
 
@@ -75,5 +69,14 @@ class YellowBoxController extends Controller
 
         $json = \json_decode($response->getBody()->getContents(), true);
         return $this->json($json['issues']);
+    }
+
+    private function requestSuccessfull(Response $response)
+    {
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 300 && $statusCode > 100) {
+            return true;
+        }
+        return false;
     }
 }
