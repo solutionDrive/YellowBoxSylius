@@ -42,6 +42,16 @@ final class YellowBoxContext implements Context
     }
 
     /**
+     * @Then I should be on the homepage
+     */
+    public function iShouldBeOnTheHomepage()
+    {
+        if (!$this->yellowBoxPage->isOpen()) {
+            throw new \Exception('I am not on the Homepage');
+        };
+    }
+
+    /**
      * @Then I should see the yellow-box overlay
      * @Given I see the yellow-box overlay
      */
