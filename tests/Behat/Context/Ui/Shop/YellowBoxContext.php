@@ -107,7 +107,7 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @Then I should see an warning message
+     * @Then I should see a warning message
      */
     public function iShouldSeeAnWarningMessage()
     {
@@ -117,7 +117,7 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @Then I should not see an warning message
+     * @Then I should not see a warning message
      */
     public function iShouldNotSeeAnWarningMessage()
     {
@@ -127,7 +127,7 @@ final class YellowBoxContext implements Context
     }
 
     /**
-     * @Then I should see an warning message and an input field
+     * @Then I should see a warning message and an input field
      */
     public function iShouldSeeAnWarningMessageAndAnInputField()
     {
