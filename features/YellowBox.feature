@@ -10,7 +10,12 @@ Feature: Managing Features with the YellowBox
     And there is no yellowbox cookie
 
   @ui
-  Scenario: I Visit the shop-page
+  Scenario: I Visit the Shop and its not broken
+    When I am on the homepage
+    Then I should be on the homepage
+
+  @ui
+  Scenario: I see the yellow-box
     When I am on the homepage
     Then I should see the yellow-box overlay
 
