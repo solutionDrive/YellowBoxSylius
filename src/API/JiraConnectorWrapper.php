@@ -8,7 +8,6 @@
 
 namespace solutionDrive\YellowBox\API;
 
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Response;
 use solutionDrive\YellowBox\API\Actions\AbstractAction;
 

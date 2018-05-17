@@ -9,8 +9,6 @@
 namespace solutionDrive\YellowBox\API;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Subscriber\Oauth\Oauth1;
 
 class JiraTokenGenerator
 {
@@ -71,7 +69,7 @@ class JiraTokenGenerator
 
         $sTokens = $oResponse->getBody()->getContents();
 
-        if ($sTokens === "oauth_problem=nonce_used") {
+        if ('oauth_problem=nonce_used' === $sTokens) {
             throw new \Exception('There is already an API-Token configured!');
         }
 
