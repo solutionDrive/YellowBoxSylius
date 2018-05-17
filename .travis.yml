@@ -65,7 +65,7 @@ before_script:
 
 script:
     - composer validate --strict
-    - bin/phpstan.phar analyse -c phpstan.neon -l max src/
+    #- bin/phpstan.phar analyse -c phpstan.neon -l max src/
     - docker run -ti -v $PWD:/app --rm dockerizedphp/ecs:2.5 check ./src
 
     - bin/phpunit
