@@ -6,6 +6,7 @@
 /composer.lock
 
 .idea/
+.web-server-pid
 
 /etc/build/*
 !/etc/build/.gitkeep
