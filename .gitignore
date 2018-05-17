@@ -11,3 +11,5 @@
 !/etc/build/.gitkeep
 
 /tests/Application/yarn.lock
+/tests/Application/.web-server-pid
+
