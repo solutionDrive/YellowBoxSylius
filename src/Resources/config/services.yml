@@ -26,7 +26,7 @@ services:
         arguments: ["@JiraServiceCore"]
     TokenGeneratorService:
         class:  solutionDrive\YellowBox\API\JiraTokenGenerator
-        arguments: ["%jira_private_key_passphrase%", "%jira_url%","%jira_token_request_url%","%jira_token_access_url%", "%jira_private_key%", "%jira_token_auth_url%"]
+        arguments: ['@solutiondrive.jira.client', "%jira_url%","%jira_token_request_url%","%jira_token_access_url%", "%jira_token_auth_url%"]
     solutiondrive.jira.client:
         class: solutionDrive\YellowBox\API\Client
         arguments: ["%jira_token%",  "%jira_private_key%", '%jira_private_key_passphrase%']

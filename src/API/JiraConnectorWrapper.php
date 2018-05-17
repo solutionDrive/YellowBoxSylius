@@ -14,8 +14,8 @@ use solutionDrive\YellowBox\API\Actions\AbstractAction;
 
 class JiraConnectorWrapper
 {
-    /** @var null|JiraConnector */
-    protected $oJiraApi = null;
+    /** @var JiraConnector */
+    protected $oJiraApi;
 
     /** @var string */
     protected $sNamespace = __NAMESPACE__ . '\\Actions\\';
@@ -186,11 +186,7 @@ class JiraConnectorWrapper
 
     protected function executeAction(Actions\ActionInterface $oAction): Response
     {
-        try {
-            $oResponse = $this->oJiraApi->requestApi($oAction);
-        } catch (RequestException $oException) {
-            $oResponse = $oException->getResponse();
-        }
+        $oResponse = $this->oJiraApi->requestApi($oAction);
         return $oResponse;
     }
 

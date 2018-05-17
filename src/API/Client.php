@@ -32,6 +32,7 @@ class Client extends \GuzzleHttp\Client
         parent::__construct([
             'handler' => $oStack,
             'auth' => 'oauth',
+            'http_errors' => false
         ]);
     }
 }
