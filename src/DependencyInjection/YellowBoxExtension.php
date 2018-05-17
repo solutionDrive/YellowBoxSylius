@@ -14,7 +14,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\VarDumper\VarDumper;
 
 final class YellowBoxExtension extends Extension
 {
@@ -24,7 +23,6 @@ final class YellowBoxExtension extends Extension
     public function load(array $config, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
-
 
         foreach ($config as $key => $value) {
             $container->setParameter($key, $value);

@@ -1,9 +1,9 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: jnoack
- * Date: 16.05.18
- * Time: 17:24
+<?php declare(strict_types=1);
+
+/*
+ * Created by solutionDrive GmbH
+ *
+ * @copyright 2018 solutionDrive GmbH
  */
 
 namespace solutionDrive\YellowBox\API;
@@ -13,7 +13,7 @@ use GuzzleHttp\Subscriber\Oauth\Oauth1;
 
 class Client extends \GuzzleHttp\Client
 {
-    public function __construct($sToken, $sPrivateKeyPath, $sPrivateKeyPassphrase)
+    public function __construct(string $sToken, string $sPrivateKeyPath, string $sPrivateKeyPassphrase)
     {
         $oStack = HandlerStack::create();
 
@@ -29,7 +29,7 @@ class Client extends \GuzzleHttp\Client
 
         $oStack->push($oMiddleware);
 
-        parent::__construct(        [
+        parent::__construct([
             'handler' => $oStack,
             'auth' => 'oauth',
         ]);

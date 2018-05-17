@@ -10,16 +10,17 @@ namespace solutionDrive\YellowBox\API;
 
 use GuzzleHttp\Psr7\Response;
 use solutionDrive\YellowBox\API\Actions\ActionInterface;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 class JiraConnector
 {
     /** @var ?string */
-    protected $sApiUrl = null;
+    protected $sApiUrl;
 
-    protected $client = null;
+    /** @var ?Client */
+    protected $client;
 
-    public function __construct(Client $client, string $sJiraUrl, string $sJiraApiUrl) {
+    public function __construct(Client $client, string $sJiraUrl, string $sJiraApiUrl)
+    {
         $this->sApiUrl = $sJiraUrl . $sJiraApiUrl;
         $this->client = $client;
     }
