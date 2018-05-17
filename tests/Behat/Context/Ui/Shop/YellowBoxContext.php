@@ -6,8 +6,8 @@ namespace Tests\solutionDrive\YellowBox\Behat\Context\Ui\Shop;
 
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
-use Tests\solutionDrive\YellowBox\Behat\Page\Shop\WelcomePageInterface;
 use Tests\solutionDrive\YellowBox\Behat\Page\Shop\YellowBoxPage;
+use Tests\solutionDrive\YellowBox\Behat\Services\YellowBoxParameter;
 use Webmozart\Assert\Assert;
 
 final class YellowBoxContext implements Context
@@ -18,6 +18,7 @@ final class YellowBoxContext implements Context
     private $yellowBoxPage;
 
     /**
+     * YellowBoxContext constructor.
      * @param YellowBoxPage $yellowBoxPage
      */
     public function __construct(YellowBoxPage $yellowBoxPage)

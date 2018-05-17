@@ -43,7 +43,7 @@ $(document).ready(function () {
 
     function approveStory(story) {
         requestStoryChange({
-            url: '/solutiondrive/yellowbox/approve',
+            url: apiApproveUrl,
             method: 'POST',
             data: {story: story}
         });
@@ -66,7 +66,7 @@ $(document).ready(function () {
     function declineStory(story) {
         var reason = $('#decline_reason').val().trim();
         requestStoryChange({
-            url: '/solutiondrive/yellowbox/decline',
+            url: apiDeclineUrl,
             method: 'POST',
             data: {story: story, decline_reason: reason}
         });
@@ -94,7 +94,7 @@ $(document).ready(function () {
     function loadStorys() {
         startLoader();
         $.ajax({
-            url: '/solutiondrive/yellowbox/storys'
+            url: apiTicketsUrl
         }).done(function (issues) {
             createIssuesDOM(issues);
             registerStoryListeners();

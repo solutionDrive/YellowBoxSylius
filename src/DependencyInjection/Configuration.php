@@ -37,6 +37,9 @@ final class Configuration implements ConfigurationInterface
             ->variableNode('jira_transition_approve')->end()
             ->variableNode('jira_transition_decline')->end()
             ->variableNode('jira_decline_reason_field')->end()
+            ->variableNode('jira_tickets_url')->end()
+            ->variableNode('jira_approve_url')->end()
+            ->variableNode('jira_decline_url')->end()
             ->end();
 
         return $treeBuilder;

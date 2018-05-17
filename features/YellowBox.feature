@@ -5,7 +5,7 @@ Feature: Managing Features with the YellowBox
   I want to be able approve and decline features
 
   Background:
-    Given the store operates on a single channel in "EUR" currency
+    Given the store operates on a single channel in "United States"
     And I am on the homepage
     And there is no yellowbox cookie
 
@@ -16,43 +16,44 @@ Feature: Managing Features with the YellowBox
 
   @ui @todo
   Scenario: I see the yellow-box
+    Given the responses are mocked
     When I am on the homepage
     Then I should see the yellow-box overlay
 
-  @ui @javascript @todo
+  @ui @javascript
   Scenario: I open the overlay
     Given I see the yellow-box overlay
     When I click on the yellow-box symbol
     Then I should see the expanded yellow-box overlay
 
-  @ui @javascript @todo
+  @ui @javascript
   Scenario: I close the overlay
     Given I see the yellow-box overlay
     When I click on the yellow-box symbol
     And I click on the close button
     Then I should not see the expanded yellow-box overlay
 
-  @ui @javascript @todo
+  @ui @javascript
   Scenario: I see storys
     Given I see the yellow-box overlay
     When I click on the yellow-box symbol
     Then I should see storys
 
-  @ui @javascript @todo
+  @ui @javascript
   Scenario: I approve and get a warning
     Given I see the yellow-box overlay
     When I click on the yellow-box symbol
     And I click on approve
     Then I should see a warning message
 
-  @ui @javascript @todo
+  @ui @javascript
   Scenario: I decline and get a warning
     Given I see the yellow-box overlay
     When I click on the yellow-box symbol
     And I click on decline
     Then I should see a warning message and an input field
 
-  @ui @javascript @todo
+  @ui @javascript
   Scenario: I approve and submit
     Given I see the yellow-box overlay
     When I click on the yellow-box symbol
@@ -60,7 +61,7 @@ Feature: Managing Features with the YellowBox
     And I click on submit
     Then I should not see a warning message
 
-  @ui @javascript @todo
+  @ui @javascript
   Scenario: I decline and submit
     Given I see the yellow-box overlay
     When I click on the yellow-box symbol
@@ -69,7 +70,7 @@ Feature: Managing Features with the YellowBox
     And I click on submit
     Then I should not see a warning message
 
-  @ui @javascript @todo
+  @ui @javascript
   Scenario: I approve and cancel
     Given I see the yellow-box overlay
     When I click on the yellow-box symbol
@@ -77,7 +78,7 @@ Feature: Managing Features with the YellowBox
     Then I should see a warning message
     And I should be able to cancel the change
 
-  @ui @javascript @todo
+  @ui @javascript
   Scenario: I decline and cancel
     Given I see the yellow-box overlay
     When I click on the yellow-box symbol

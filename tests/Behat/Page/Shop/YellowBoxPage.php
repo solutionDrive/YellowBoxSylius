@@ -19,7 +19,7 @@ class YellowBoxPage extends SymfonyPage
             return false;
         });
 
-        sleep(2);
+        sleep(1);
     }
 
     /**
