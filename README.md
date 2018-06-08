@@ -21,6 +21,7 @@ yellow_box:
   jira_transition_decline: <transition id for declining>
   jira_decline_reason_field: <the field to write the decline reason in>
 ```
+
 3. Go to the shop which this plugin is installed on and open 
         
         <your protocoll>://<your-shop>/solutiondrive/yellowbox/generate_token
