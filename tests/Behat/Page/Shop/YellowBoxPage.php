@@ -125,7 +125,7 @@ class YellowBoxPage extends SymfonyPage
 
     public function assetsAreLoaded()
     {
-        $curl = curl_init("/assets/shop/css/style.css");
+        $curl = curl_init("http://127.0.0.1:8080/assets/shop/css/style.css");
 
         curl_setopt($curl, CURLOPT_NOBODY, true);
         curl_exec($curl);
