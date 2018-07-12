@@ -3,5 +3,5 @@ sylius:
 
 # Put your own routes here
 
-acme_sylius_example_shop:
-    resource: "@YellowBoxPlugin/Resources/config/app/shop_routing.yml"
+yellow_box:
+    resource: "@YellowBoxPlugin/Resources/config/routing.yml"

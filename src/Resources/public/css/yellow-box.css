@@ -1,0 +1,52 @@
+#yellow-box {
+    position: fixed;
+    width: 4em;
+    height: 4em;
+    bottom: 10px;
+    right: 2em;
+    z-index: 10;
+    background: #353844;
+    cursor: pointer;
+    transition: width ease-out 0.5s;
+}
+
+#yellow-box:hover {
+    background: #1F2127;
+    box-shadow: #FE5607 1px 1px 1px 1px;
+}
+
+#yellow-box.expanded > i {
+    display: none;
+}
+
+#yellow-box > i {
+    left: 0.06em;
+    top: 0.14em;
+    position: absolute;
+    color: #FE5607;
+    font-size: 3em;
+}
+
+#yellow-box.expanded {
+    width: 40em;
+    height: auto;
+    min-height: 10em;
+    background: #1F2127;
+    box-shadow: #FE5607 1px 1px 1px 1px;
+}
+
+.story {
+    color: #FFF;
+}
+
+#storys.animated {
+    animation: fadeIn 1s;
+}
+
+.hidden {
+    visibility: hidden!important;
+}
+
+.modal.basic .ui.form .field>label {
+    color: white;
+}

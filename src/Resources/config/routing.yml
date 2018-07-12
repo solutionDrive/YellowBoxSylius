@@ -1,0 +1,19 @@
+yellowbox_approve:
+    path: /solutiondrive/yellowbox/approve
+    defaults:
+        _controller: YellowBoxPlugin:YellowBox:approve
+
+yellowbox_decline:
+    path: /solutiondrive/yellowbox/decline
+    defaults:
+        _controller: YellowBoxPlugin:YellowBox:decline
+
+yellowbox_get_storys:
+    path: /solutiondrive/yellowbox/storys
+    defaults:
+        _controller: YellowBoxPlugin:YellowBox:getStorys
+
+yellowbox_generate_token:
+    path: /solutiondrive/yellowbox/generate_token
+    defaults:
+        _controller: YellowBoxPlugin:JiraToken:generateToken

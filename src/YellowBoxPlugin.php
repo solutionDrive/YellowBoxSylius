@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+/*
+ * Created by solutionDrive GmbH
+ *
+ * @copyright 2018 solutionDrive GmbH
+ */
+
 namespace solutionDrive\YellowBox;
 
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;

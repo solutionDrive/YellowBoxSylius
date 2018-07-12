@@ -65,11 +65,11 @@ before_script:
 
 script:
     - composer validate --strict
-    - bin/phpstan.phar analyse -c phpstan.neon -l max src/
+    #- bin/phpstan.phar analyse -c phpstan.neon -l max src/
+    - bin/easy-coding-standard check src/
 
     - bin/phpunit
     - bin/phpspec run
     - bin/behat --strict -vvv --no-interaction || bin/behat --strict -vvv --no-interaction --rerun
-
 after_failure:
     - vendor/lakion/mink-debug-extension/travis/tools/upload-textfiles "${SYLIUS_BUILD_DIR}/*.log"

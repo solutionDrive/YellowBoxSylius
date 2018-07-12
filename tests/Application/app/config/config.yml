@@ -64,3 +64,21 @@ fos_rest:
 sylius_theme:
     sources:
         test: ~
+
+yellow_box:
+    jira_token: ~
+    jira_url: https://jira.solutiondrive.de
+    jira_api_url: /rest/api/2/
+    jira_token_request_url: /plugins/servlet/oauth/request-token
+    jira_token_auth_url: /plugins/servlet/oauth/authorize?oauth_token=
+    jira_token_access_url: /plugins/servlet/oauth/access-token
+    jira_private_key: "%kernel.root_dir%/../../../src/Resources/config/keys/jira_privatekey.pcks8"
+    jira_private_key_passphrase: ~
+    jira_projekt_key: YELLOWBOX
+    jira_displayed_issue_status: In Progress
+    jira_transition_approve: 31
+    jira_transition_decline: 11
+    jira_decline_reason_field: customfield_12301
+    jira_tickets_url: /solutiondrive/yellowbox/storys
+    jira_approve_url: /solutiondrive/yellowbox/approve
+    jira_decline_url: /solutiondrive/yellowbox/decline

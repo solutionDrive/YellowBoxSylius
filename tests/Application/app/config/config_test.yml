@@ -4,3 +4,8 @@ imports:
 doctrine:
     dbal:
         path: "%kernel.root_dir%/../var/db_test.sql"
+
+yellow_box:
+    jira_tickets_url: /bundles/yellowboxplugin/json/jira_api_getTickets_successful.json
+    jira_approve_url: /bundles/yellowboxplugin/json/jira_api_approve_successful.json
+    jira_decline_url: /bundles/yellowboxplugin/json/jira_api_decline_successful.json
