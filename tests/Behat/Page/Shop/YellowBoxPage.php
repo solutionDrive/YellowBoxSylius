@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\solutionDrive\YellowBox\Behat\Page\Shop;
 
+use GuzzleHttp\Client;
 use Sylius\Behat\Page\SymfonyPage;
 
 class YellowBoxPage extends SymfonyPage
@@ -120,5 +121,17 @@ class YellowBoxPage extends SymfonyPage
     public function clearYellowBoxCookie()
     {
         $this->getDriver()->setCookie('yellowbox-state', 'false');
+    }
+
+    public function assetsAreLoaded()
+    {
+        $curl = curl_init("/assets/shop/css/style.css");
+
+        curl_setopt($curl, CURLOPT_NOBODY, true);
+        curl_exec($curl);
+        $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        curl_close($curl);
+
+        return 400 !== $httpCode && 0 !== $httpCode;
     }
 }

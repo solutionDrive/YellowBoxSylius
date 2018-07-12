@@ -13,6 +13,7 @@ Feature: Managing Features with the YellowBox
   Scenario: I Visit the Shop and its not broken
     When I am on the homepage
     Then I should be on the homepage
+    And I see the assets have been loaded
 
   @ui @todo
   Scenario: I see the yellow-box

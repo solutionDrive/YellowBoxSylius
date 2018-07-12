@@ -7,7 +7,6 @@ namespace Tests\solutionDrive\YellowBox\Behat\Context\Ui\Shop;
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Tests\solutionDrive\YellowBox\Behat\Page\Shop\YellowBoxPage;
-use Tests\solutionDrive\YellowBox\Behat\Services\YellowBoxParameter;
 use Webmozart\Assert\Assert;
 
 final class YellowBoxContext implements Context
@@ -60,6 +59,16 @@ final class YellowBoxContext implements Context
     {
         if (!$this->yellowBoxPage->overlayExists()) {
             throw new \Exception('YellowBox ist nicht auf der Seite');
+        }
+    }
+
+    /**
+     * @Then I see the assets have been loaded
+     */
+    public function ISeeTheAssetsHaveBeenLoaded()
+    {
+        if (!$this->yellowBoxPage->assetsAreLoaded()) {
+            throw new \Exception('Sylius assets sind nicht geladen!');
         }
     }
 
