@@ -132,6 +132,6 @@ class YellowBoxPage extends SymfonyPage
         $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
 
-        return 400 !== $httpCode && 0 !== $httpCode;
+        return 404 !== $httpCode && 0 !== $httpCode;
     }
 }
